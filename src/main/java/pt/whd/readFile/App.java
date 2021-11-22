@@ -17,7 +17,7 @@ public class App
 {
 	public static void main( String[] args ) throws IOException {
 		// get the downloaded and unziped file
-		File file = new File(args[0]); 
+		File file = new File("arquivo_dagi.txt");
 
 		BufferedReader br = new BufferedReader(new FileReader(file)); 
 		
@@ -53,7 +53,7 @@ public class App
 
 	private static Double getDouble(String valor) {
 		if (valor == null) return 0d;
-		if (valor.isBlank()) return 0d;
+		if (valor.isEmpty()) return 0d;
 		return Double.valueOf(valor.replace(",", "."));
 	}
 
