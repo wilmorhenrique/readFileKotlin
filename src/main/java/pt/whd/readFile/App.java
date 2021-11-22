@@ -17,7 +17,7 @@ public class App
 {
 	public static void main( String[] args ) throws IOException {
 		// get the downloaded and unziped file
-		File file = new File(args[0]); 
+		File file = new File"arquivo_dagi.txt");
 
 		BufferedReader br = new BufferedReader(new FileReader(file)); 
 		
