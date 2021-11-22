@@ -16,39 +16,42 @@ import java.util.stream.Collectors;
 public class App 
 {
 	public static void main( String[] args ) throws IOException {
-		// get the downloaded and unziped file
-		File file = new File("arquivo_dagi.txt");
+		readFile(args[0]);
+	}
 
-		BufferedReader br = new BufferedReader(new FileReader(file)); 
-		
+	public static String readFile(String fileName) throws IOException {
+		File file = new File(fileName);
+		BufferedReader br = new BufferedReader(new FileReader(file));
+
 		StringBuffer ids = new StringBuffer();
 
 		List<Pedido> pedidos = new ArrayList<Pedido>();
-		String fileLine; 
+		String fileLine;
 		while ((fileLine = br.readLine()) != null) {
-			
+
 			String[] fields = fileLine.split(";");
 			if ( isValidLine(fields)) {
 				ids.append(fields[0]).append(",");
 				Pedido pedido = new Pedido(Long.valueOf(fields[0]), fields[1], getDouble(fields[2]));
 				pedidos.add(pedido);
 			}
-		}	
+		}
 		br.close();
-		
+
 		System.out.println("Resumo do ficheiro");
 		System.out.println("\n");
 		System.out.println("Total de Registos: " + pedidos.size());
 		System.out.println("\n");
-		
+
 		Map<String, List<Pedido>> pedidosPorTipo = pedidos.stream().
 				  collect(Collectors.groupingBy(Pedido::getEstado));
-		
-		
+
+
 		pedidosPorTipo.forEach((k, v) -> System.out.println(("\n" + k + ":" + v.size() + " soma:" + v.stream().collect(Collectors.summingDouble(Pedido::getValor))) ));
 		System.out.println("\n");
-		
+
 		System.out.println("IDs: " + ids.substring(0, ids.length()-1));
+		return ids.substring(0, ids.length()-1);
 	}
 
 	private static Double getDouble(String valor) {

@@ -9,7 +9,6 @@ public class Pedido {
 	
 
 	public Pedido(Long id, String estado, Double valor) {
-		super();
 		this.id = id;
 		this.estado = estado;
 		this.valor = valor;
