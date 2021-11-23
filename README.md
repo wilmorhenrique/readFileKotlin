@@ -1,2 +1,2 @@
 # readFileKotlin
-Version fo Readfile project in Kotlin
+Version of Readfile project in Kotlin
